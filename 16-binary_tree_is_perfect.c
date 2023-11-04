@@ -21,17 +21,18 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 
 	node_count = (1 << depth) - 1;
 
-	return binary_tree_is_perfect_recursive(tree, depth, &node_count);
+	return (binary_tree_is_perfect_recursive(tree, depth, &node_count));
 }
 
 /**
- * binary_tree_is_perfect_recursive - Recursively checks if a binary tree is perfect.
+ * binary_tree_is_perfect_recursive - Recursively checks 
  * @tree: Pointer to the current node being checked.
  * @depth: The depth of the tree.
  * @node_count: The expected number of nodes for a perfect tree.
  * Return: 1 if the tree is perfect, 0 if not.
  */
-int binary_tree_is_perfect_recursive(const binary_tree_t *tree, int depth, int *node_count)
+int binary_tree_is_perfect_recursive(const binary_tree_t *tree,
+		int depth, int *node_count)
 {
 	if (tree == NULL)
 		return (*node_count == 0);
@@ -49,8 +50,10 @@ int binary_tree_is_perfect_recursive(const binary_tree_t *tree, int depth, int *
 
 		(*node_count) -= (left_nodes + 1);
 
-		return (binary_tree_is_perfect_recursive(tree->left, left_depth, node_count) &&
-				binary_tree_is_perfect_recursive(tree->right, left_depth, node_count));
+		return (binary_tree_is_perfect_recursive(tree->left,
+					left_depth, node_count) &&
+				binary_tree_is_perfect_recursive(tree->right,
+					left_depth, node_count));
 	}
 
 	return (0);
